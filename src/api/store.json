@@ -1,0 +1,93 @@
+[
+    {
+        "id": "1",
+        "customerName": "Jan Kowalski",
+        "subject": "Problem z logowaniem",
+        "description": "Nie mogę się zalogować do systemu od wczoraj.",
+        "priority": "high", 
+        "status": "new", 
+        "createdAt": "2024-02-06T10:30:00"
+    },
+    {
+        "id": "2",
+        "customerName": "Anna Nowak",
+        "subject": "Błąd 404 na stronie",
+        "description": "Strona nie została znaleziona.",
+        "priority": "medium", 
+        "status": "in_progress", 
+        "createdAt": "2024-02-06T10:31:00"
+    },
+    {
+        "id": "3",
+        "customerName": "Piotr Wiśniewski",
+        "subject": "Wyświetla się błąd płatności",
+        "description": "Podczas próby dokonania płatności pojawia się błąd.",
+        "priority": "high", 
+        "status": "new", 
+        "createdAt": "2024-02-06T10:32:00"
+    },
+    {
+        "id": "4",
+        "customerName": "Katarzyna Zielińska",
+        "subject": "Nie działa funkcja eksportu danych",
+        "description": "Kiedy próbuję wyeksportować dane, pojawia się błąd.",
+        "priority": "low", 
+        "status": "in_progress", 
+        "createdAt": "2024-02-06T10:33:00"
+    },
+    {
+        "id": "5",
+        "customerName": "Marek Lewandowski",
+        "subject": "Problem z aktualizacją oprogramowania",
+        "description": "Po aktualizacji oprogramowania system działa wolniej.",
+        "priority": "medium", 
+        "status": "new", 
+        "createdAt": "2024-02-06T10:34:00"
+    },
+    {
+        "id": "6",
+        "customerName": "Janusz Wiśniewski",
+        "subject": "Wyszukiwanie nie zwraca wyników",
+        "description": "Wyszukiwanie nie zwraca żadnych wyników.",
+        "priority": "low", 
+        "status": "new", 
+        "createdAt": "2024-02-06T10:34:00"
+    },
+    {
+        "id": "7",
+        "customerName": "Ewa Kowalczyk",
+        "subject": "Nie można dodać nowego użytkownika",
+        "description": "Podczas próby dodania nowego użytkownika pojawia się błąd.",
+        "priority": "medium", 
+        "status": "in_progress", 
+        "createdAt": "2024-02-06T10:35:00"
+    },
+    {
+        "id": "8",
+        "customerName": "Adam Nowak",
+        "subject": "Błąd podczas generowania raportu",
+        "description": "Podczas próby wygenerowania raportu pojawia się błąd.",
+        "priority": "high", 
+        "status": "new", 
+        "createdAt": "2024-02-06T10:36:00"
+    },
+    {
+        "id": "9",
+        "customerName": "Monika Zielińska",
+        "subject": "Nie działa integracja z zewnętrznym API",
+        "description": "Integracja z zewnętrznym API przestała działać.",
+        "priority": "medium", 
+        "status": "closed", 
+        "createdAt": "2024-02-06T10:37:00"
+    },
+    {
+        "id": "10",
+        "customerName": "Tomasz Lewandowski",
+        "subject": "Problem z wyświetlaniem danych na dashboardzie",
+        "description": "Dane na dashboardzie nie są aktualizowane.",
+        "priority": "low", 
+        "status": "closed", 
+        "createdAt": "2024-02-06T10:38:00"
+    }
+
+]

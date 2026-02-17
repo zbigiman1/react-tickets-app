@@ -1,0 +1,36 @@
+@use "variables";
+
+.select-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    /* 📱 Mobile view */
+    &.collapse-on-mobile {
+        @media (max-width: 768px) {
+            flex-direction: column;
+        }
+    }
+
+    .select-label {
+        margin: 0.5rem;
+        font-size: 0.875rem;
+        color: variables.$text-color;
+    }
+
+    .select {
+        width: 10rem;
+        padding: variables.$button-padding;
+        font-size: 0.875rem;
+        border-radius: variables.$border-radius;
+        border: 1px solid variables.$border-color;
+        background-color: variables.$background-color;
+        cursor: pointer;
+
+        &:focus {
+            outline: none;
+            border-color: variables.$green-color;
+            box-shadow: variables.$select-active-box-shadow
+        }
+    }
+}
