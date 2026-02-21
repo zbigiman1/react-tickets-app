@@ -26,26 +26,11 @@
     border: 1px solid variables.$border-color;
     background-color: variables.$background-color;
     cursor: pointer;
-    appearance: none; /* remove default arrow */
-    -webkit-appearance: none;
-    -moz-appearance: none;
 
     &:focus {
       outline: none;
       border-color: variables.$green-color;
       box-shadow: variables.$select-active-box-shadow;
     }
-  }
-  &::after {
-    content: '';
-    position: absolute;
-    top: 46%;
-    right: 12px;
-    width: 6px;
-    height: 6px;
-    border-right: 2px solid #333;
-    border-bottom: 2px solid #333;
-    transform: translateY(-50%) rotate(45deg);
-    pointer-events: none; /* important */
   }
 }
