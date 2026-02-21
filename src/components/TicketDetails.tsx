@@ -56,7 +56,6 @@ export default function TicketDetails() {
               onChange={e => setStatus(e.target.value as Status)}
               className="select"
             >
-              {/* Render all possible statuses so the UI and tests can choose any of them */}
               <option value="new">{t('new')}</option>
               <option value="in_progress">{t('in_progress')}</option>
               <option value="closed">{t('closed')}</option>
