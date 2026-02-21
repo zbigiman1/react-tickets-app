@@ -22,9 +22,7 @@ export default function TicketDetails() {
 
   useEffect(() => {
     if (!id) return
-    ;(async () => {
-      await getTicketById(id)
-    })()
+    getTicketById(id)
   }, [id, getTicketById])
 
   async function handleUpdateTicketStatus(idStr: string) {
