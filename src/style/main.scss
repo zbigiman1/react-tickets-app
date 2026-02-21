@@ -11,30 +11,30 @@
 @use 'error-message.scss';
 
 body {
-    font-family: variables.$font-family;
-    font-size: variables.$font-size;
-    background-color: variables.$background-color;
-    color: variables.$text-color;
+  font-family: variables.$font-family;
+  font-size: variables.$font-size;
+  background-color: variables.$background-color;
+  color: variables.$text-color;
 }
 
 h1 {
-    margin-bottom: variables.$spacing;
-    font-size: variables.$h1-font-size;
-    font-weight: variables.$font-weight-bolder;
+  margin-bottom: variables.$spacing;
+  font-size: variables.$h1-font-size;
+  font-weight: variables.$font-weight-bolder;
 }
 
 p {
-    margin-bottom: variables.$spacing;
+  margin-bottom: variables.$spacing;
 }
 
 strong {
-    font-weight: variables.$font-weight-bold;
+  font-weight: variables.$font-weight-bold;
 }
 
 a {
-    color: variables.$link-color;
+  color: variables.$link-color;
 
-    &:hover {
-        color: variables.$link-hover-color;
-    }
+  &:hover {
+    color: variables.$link-hover-color;
+  }
 }

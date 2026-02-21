@@ -1,7 +1,5 @@
-import TicketsDetails from "@/components/TicketDetails";
+import TicketsDetails from '@/components/TicketDetails'
 
 export default function TicketDetails() {
-  return (
-    <TicketsDetails />
-  );
+  return <TicketsDetails />
 }

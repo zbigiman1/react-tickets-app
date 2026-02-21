@@ -10,8 +10,7 @@ export default function TicketsTable() {
   const { t } = useTranslation()
   const navigate = useNavigate()
 
-const { tickets, loading, error, getTickets, filterTicketsByStatus } =
-    useTicketsStore()
+  const { tickets, loading, error, getTickets, filterTicketsByStatus } = useTicketsStore()
 
   const [filter, setFilter] = useState<Status | 'all'>('all')
 
@@ -28,9 +27,7 @@ const { tickets, loading, error, getTickets, filterTicketsByStatus } =
   if (loading) return <Loader />
 
   if (error) {
-    return (
-      <ErrorMessage error={error} />
-    )
+    return <ErrorMessage error={error} />
   }
 
   return (
@@ -43,7 +40,7 @@ const { tickets, loading, error, getTickets, filterTicketsByStatus } =
           <select
             id="status-select"
             value={filter}
-            onChange={(e) => setFilter(e.target.value as any)}
+            onChange={e => setFilter(e.target.value as Status | 'all')}
             className="select"
           >
             <option value="new">{t('new')}</option>
@@ -75,12 +72,8 @@ const { tickets, loading, error, getTickets, filterTicketsByStatus } =
           </tr>
         </thead>
         <tbody>
-          {filtered.map((ticket) => (
-            <tr
-              key={ticket.id}
-              className="ticket-row"
-              onClick={() => handleRowClick(ticket.id)}
-            >
+          {filtered.map(ticket => (
+            <tr key={ticket.id} className="ticket-row" onClick={() => handleRowClick(ticket.id)}>
               <td>{ticket.id}</td>
               <td>{ticket.customerName}</td>
               <td>{ticket.subject}</td>

@@ -1,5 +1,5 @@
-export type Status = "new" | "in_progress" | "closed"
-export type Priority = "low" | "medium" | "high"
+export type Status = 'new' | 'in_progress' | 'closed'
+export type Priority = 'low' | 'medium' | 'high'
 
 export type Ticket = {
   id: string

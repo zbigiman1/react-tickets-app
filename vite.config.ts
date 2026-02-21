@@ -6,13 +6,13 @@ import { defineConfig } from 'vitest/config'
 export default defineConfig({
   plugins: [react()],
   test: {
-    environment: "jsdom",
+    environment: 'jsdom',
     globals: true,
-    setupFiles: ['./src/tests/setup.ts'],
+    setupFiles: ['./src/tests/setup.ts']
   },
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url)),
-    },
-  },
+      '@': fileURLToPath(new URL('./src', import.meta.url))
+    }
+  }
 })

@@ -1,62 +1,62 @@
 @use 'variables.scss';
 
 .tickets-filter {
-    margin-bottom: variables.$spacing;
-    display: flex;
-    justify-content: flex-end;
+  margin-bottom: variables.$spacing;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .tickets-table {
-    width: 100%;
-    border-collapse: collapse;
+  width: 100%;
+  border-collapse: collapse;
+
+  tr {
+    &:nth-child(even) {
+      background: variables.$table-row-even-bg;
+    }
+
+    &.ticket-row {
+      cursor: pointer;
+
+      &:hover {
+        background: variables.$table-ticket-row-hover-bg;
+      }
+    }
+  }
+
+  th,
+  td {
+    padding: variables.$spacing;
+    border-bottom: 1px solid variables.$border-color;
+    text-align: left;
+  }
+
+  thead {
+    background: variables.$table-header-bg;
+    font-weight: variables.$font-weight-bold;
+  }
+
+  /* 📱 Mobile view */
+  @media (max-width: 768px) {
+    thead {
+      display: none;
+    }
 
     tr {
-        &:nth-child(even) {
-            background: variables.$table-row-even-bg;
-        }
-
-        &.ticket-row {
-            cursor: pointer;
-
-            &:hover {
-                background: variables.$table-ticket-row-hover-bg;
-            }
-        }
+      display: block;
+      background: variables.$card-background;
+      margin-bottom: variables.$spacing;
+      border-radius: variables.$border-radius;
+      box-shadow: variables.$card-box-shadow;
+      padding: variables.$spacing;
     }
 
-    th,
     td {
-        padding: variables.$spacing;
-        border-bottom: 1px solid variables.$border-color;
-        text-align: left;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: none;
+      padding: variables.$card-td-padding 0;
     }
-
-    thead {
-        background: variables.$table-header-bg;
-        font-weight: variables.$font-weight-bold;
-    }
-
-    /* 📱 Mobile view */
-    @media (max-width: 768px) {
-        thead {
-            display: none;
-        }
-
-        tr {
-            display: block;
-            background: variables.$card-background;
-            margin-bottom: variables.$spacing;
-            border-radius: variables.$border-radius;
-            box-shadow: variables.$card-box-shadow;
-            padding: variables.$spacing;
-        }
-
-        td {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border: none;
-            padding: variables.$card-td-padding 0;
-        }
-    }
+  }
 }

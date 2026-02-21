@@ -1,14 +1,18 @@
 import useLocale from '@/hooks/useLocale'
 import { fireEvent, render, screen } from '@testing-library/react'
+import type { i18n } from 'i18next'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-
-function TestComponent({ i18n }: { i18n: any }) {
+function TestComponent({ i18n }: { i18n: i18n | null | undefined }) {
   const { locale, setLocale } = useLocale(i18n ?? null)
   return (
     <div>
       <span data-testid="locale">{locale}</span>
-      <button data-testid="set-pl" onClick={() => setLocale('pl')}>set-pl</button>
-      <button data-testid="set-en" onClick={() => setLocale('en')}>set-en</button>
+      <button data-testid="set-pl" onClick={() => setLocale('pl')}>
+        set-pl
+      </button>
+      <button data-testid="set-en" onClick={() => setLocale('en')}>
+        set-en
+      </button>
     </div>
   )
 }
@@ -23,7 +27,7 @@ describe('useLocale', () => {
   it('reads initial locale from localStorage and calls i18n.changeLanguage', () => {
     localStorage.setItem('i18nextLng', 'pl')
     const changeLanguage = vi.fn()
-    const i18n = { changeLanguage }
+    const i18n = { changeLanguage } as unknown as i18n
 
     render(<TestComponent i18n={i18n} />)
 
@@ -33,7 +37,7 @@ describe('useLocale', () => {
 
   it('updates locale when setLocale is called, writes to localStorage and calls changeLanguage', () => {
     const changeLanguage = vi.fn()
-    const i18n = { changeLanguage }
+    const i18n = { changeLanguage } as unknown as i18n
 
     render(<TestComponent i18n={i18n} />)
 

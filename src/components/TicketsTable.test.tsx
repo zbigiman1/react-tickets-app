@@ -6,24 +6,24 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 const getTicketsMock = vi.fn()
 
 vi.mock('@/stores/useTicketsStore', () => ({
-  useTicketsStore: vi.fn(),
+  useTicketsStore: vi.fn()
 }))
 
 vi.mock('@/components/Loader', () => ({
-  default: () => <div data-testid="loader">LOADING</div>,
+  default: () => <div data-testid="loader">LOADING</div>
 }))
 
 vi.mock('@/components/ErrorMessage', () => ({
-  default: ({ error }: any) => <div data-testid="error">{String(error)}</div>,
+  default: ({ error }: { error: unknown }) => <div data-testid="error">{String(error)}</div>
 }))
 
 vi.mock('react-i18next', () => ({
-  useTranslation: () => ({ t: (k: string) => k }),
+  useTranslation: () => ({ t: (k: string) => k })
 }))
 
 const navigateMock = vi.fn()
 vi.mock('react-router-dom', () => ({
-  useNavigate: () => navigateMock,
+  useNavigate: () => navigateMock
 }))
 
 import { useTicketsStore } from '@/stores/useTicketsStore'
@@ -36,12 +36,15 @@ describe('TicketsTable', () => {
   })
 
   it('shows loader when loading and calls getTickets', async () => {
-    (useTicketsStore as any).mockImplementation(() => ({
+    ;(useTicketsStore as unknown as ReturnType<typeof vi.fn>).mockImplementation(() => ({
       tickets: [],
       loading: true,
       error: null,
       getTickets: getTicketsMock,
-  filterTicketsByStatus: (_: string) => [],
+      filterTicketsByStatus: (status: string) => {
+        void status
+        return []
+      }
     }))
 
     render(<TicketsTable />)
@@ -51,12 +54,15 @@ describe('TicketsTable', () => {
   })
 
   it('shows error when error exists', async () => {
-    (useTicketsStore as any).mockImplementation(() => ({
+    ;(useTicketsStore as unknown as ReturnType<typeof vi.fn>).mockImplementation(() => ({
       tickets: [],
       loading: false,
       error: 'network',
       getTickets: getTicketsMock,
-  filterTicketsByStatus: (_: string) => [],
+      filterTicketsByStatus: (status: string) => {
+        void status
+        return []
+      }
     }))
 
     render(<TicketsTable />)
@@ -67,19 +73,19 @@ describe('TicketsTable', () => {
     const tickets = [
       { id: '1', customerName: 'Alice', subject: 'A', status: 'new', priority: 'low' },
       { id: '2', customerName: 'Bob', subject: 'B', status: 'in_progress', priority: 'high' },
-      { id: '3', customerName: 'Carl', subject: 'C', status: 'closed', priority: 'medium' },
+      { id: '3', customerName: 'Carl', subject: 'C', status: 'closed', priority: 'medium' }
     ]
 
     function filterFn(status: string) {
-      return tickets.filter((t) => t.status === status)
+      return tickets.filter(t => t.status === status)
     }
 
-    (useTicketsStore as any).mockImplementation(() => ({
+    ;(useTicketsStore as unknown as ReturnType<typeof vi.fn>).mockImplementation(() => ({
       tickets,
       loading: false,
       error: null,
       getTickets: getTicketsMock,
-      filterTicketsByStatus: filterFn,
+      filterTicketsByStatus: filterFn
     }))
 
     render(<TicketsTable />)

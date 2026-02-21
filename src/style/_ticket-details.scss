@@ -1,49 +1,47 @@
-@use "variables";
+@use 'variables';
 
 .ticket-details {
+  .ticket-details-header {
+    display: flex;
+    justify-content: space-between;
 
-    .ticket-details-header {
-        display: flex;
-        justify-content: space-between;
+    .back-to-list-chevron {
+      margin-right: 0.25rem;
+      font-size: 0.875rem;
+      font-weight: variables.$font-weight-bold;
 
-        .back-to-list-chevron {
-            margin-right: 0.25rem;
-            font-size: 0.875rem;
-            font-weight: variables.$font-weight-bold;
-
-            @media (max-width: 425px) {
-                background-color: variables.$blue-color;
-                color: variables.$white-color;
-                padding: variables.$button-padding;
-                border-radius: variables.$border-radius;
-
-            }
-        }
-
-        .back-to-list-text {
-            @media (max-width: 425px) {
-                display: none;
-            }
-        }
-
-        .ticket-status-dropdown {
-            display: flex;
-            gap: 0.5rem;
-
-            /* 📱 Mobile view */
-            @media (max-width: 768px) {
-                flex-direction: column;
-            }
-        }
+      @media (max-width: 425px) {
+        background-color: variables.$blue-color;
+        color: variables.$white-color;
+        padding: variables.$button-padding;
+        border-radius: variables.$border-radius;
+      }
     }
 
-    .ticket-details-list {
-        li {
-            padding: 0.5rem variables.$spacing;
-        }
+    .back-to-list-text {
+      @media (max-width: 425px) {
+        display: none;
+      }
     }
 
-    .ticket-description {
-        padding: variables.$spacing;
+    .ticket-status-dropdown {
+      display: flex;
+      gap: 0.5rem;
+
+      /* 📱 Mobile view */
+      @media (max-width: 768px) {
+        flex-direction: column;
+      }
     }
+  }
+
+  .ticket-details-list {
+    li {
+      padding: 0.5rem variables.$spacing;
+    }
+  }
+
+  .ticket-description {
+    padding: variables.$spacing;
+  }
 }

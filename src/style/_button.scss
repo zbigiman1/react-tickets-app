@@ -1,23 +1,23 @@
-@use "sass:color";
-@use "variables";
+@use 'sass:color';
+@use 'variables';
 
 .btn {
-    width: 10rem;
-    padding: variables.$button-padding;
-    font-size: 0.875rem;
-    border-radius: variables.$border-radius;
-    border: 1px solid variables.$border-color;
-    background-color: variables.$light-gray-color;
-    cursor: pointer;
+  width: 10rem;
+  padding: variables.$button-padding;
+  font-size: 0.875rem;
+  border-radius: variables.$border-radius;
+  border: 1px solid variables.$border-color;
+  background-color: variables.$light-gray-color;
+  cursor: pointer;
 
-    &.primary {
-        background-color: variables.$blue-color;
-        border-color: variables.$blue-color;
-        color: variables.$white-color;
+  &.primary {
+    background-color: variables.$blue-color;
+    border-color: variables.$blue-color;
+    color: variables.$white-color;
 
-        &:hover {
-            background-color: color.adjust(variables.$blue-color, $lightness: -5%);
-            border-color: color.adjust(variables.$blue-color, $lightness: -5%);
-        }
+    &:hover {
+      background-color: color.adjust(variables.$blue-color, $lightness: -5%);
+      border-color: color.adjust(variables.$blue-color, $lightness: -5%);
     }
+  }
 }

@@ -1,4 +1,4 @@
-@use "sass:color";
+@use 'sass:color';
 $text-color: #333;
 $text-color-light: #777;
 $white-color: #fff;
@@ -8,7 +8,7 @@ $background-color: #fff;
 $red-color: #e74c3c;
 $orange-color: #e67e22;
 $light-gray-color: #ededed;
-$link-color: #297AB1;
+$link-color: #297ab1;
 $link-hover-color: color.adjust($link-color, $lightness: -5%);
 
 $border-color: #ddd;
@@ -17,8 +17,7 @@ $table-header-bg: #f5f5f5;
 $table-row-even-bg: #f9f9f9;
 $table-ticket-row-hover-bg: #f0f0f0;
 
-
-$font-family: "Lato", sans-serif;
+$font-family: 'Lato', sans-serif;
 $font-size: 16px;
 $font-weight-normal: 400;
 $font-weight-bold: 700;

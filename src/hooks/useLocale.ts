@@ -19,7 +19,9 @@ export default function useLocale(i18n: I18nType | null = null) {
     }
     try {
       localStorage.setItem('i18nextLng', locale)
-    } catch {}
+    } catch {
+      /* empty */
+    }
   }, [locale, i18n])
 
   return { locale, setLocale }

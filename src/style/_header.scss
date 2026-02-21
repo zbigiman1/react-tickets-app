@@ -1,33 +1,33 @@
-@use "variables";
+@use 'variables';
 
 .header {
-    background-color: variables.$blue-color;
-    color: variables.$white-color;
-    width: 100%;
-    
-    .header-content {
-        max-width: variables.$page-max-width;
-        padding: variables.$spacing;
-        margin: 0 auto;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+  background-color: variables.$blue-color;
+  color: variables.$white-color;
+  width: 100%;
 
-        .locale-switcher {
-            button {
-                background: none;
-                border: none;
-                color: variables.$white-color;
-                font-size: 0.875rem;
-                cursor: pointer;
-                padding: 0.25rem 0.5rem;
+  .header-content {
+    max-width: variables.$page-max-width;
+    padding: variables.$spacing;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-                &:hover,
-                &.active {
-                    background-color: variables.$locale-switcher-button-active-bg;
-                    border-radius: variables.$border-radius;
-                }
-            }
+    .locale-switcher {
+      button {
+        background: none;
+        border: none;
+        color: variables.$white-color;
+        font-size: 0.875rem;
+        cursor: pointer;
+        padding: 0.25rem 0.5rem;
+
+        &:hover,
+        &.active {
+          background-color: variables.$locale-switcher-button-active-bg;
+          border-radius: variables.$border-radius;
         }
+      }
     }
+  }
 }

@@ -6,14 +6,14 @@ const setLocaleMock = vi.fn()
 
 // Provide factory mocks so the imported hooks return deterministic implementations
 vi.mock('@/hooks/useLocale', () => ({
-  default: () => ({ locale: 'en', setLocale: setLocaleMock }),
+  default: () => ({ locale: 'en', setLocale: setLocaleMock })
 }))
 
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({
     t: (key: string) => (key === 'title' ? 'Test Title' : key),
-    i18n: { changeLanguage: vi.fn() },
-  }),
+    i18n: { changeLanguage: vi.fn() }
+  })
 }))
 
 import Header from './Header'

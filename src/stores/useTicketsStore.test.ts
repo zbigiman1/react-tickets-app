@@ -1,10 +1,11 @@
+import type { Ticket } from '@/types'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 // Create mocked API functions inside the factory so vitest hoisting is safe
 vi.mock('@/api', () => ({
   getTickets: vi.fn(),
   getTicketById: vi.fn(),
-  updateTicketStatus: vi.fn(),
+  updateTicketStatus: vi.fn()
 }))
 
 import * as api from '@/api'
@@ -12,24 +13,24 @@ import { useTicketsStore } from './useTicketsStore'
 
 describe('useTicketsStore', () => {
   const initialState = {
-    tickets: [] as any[],
-    currentTicket: null as any,
+    tickets: [] as Ticket[],
+    currentTicket: null as Ticket | null,
     loading: false,
-    error: null as string | null,
+    error: null as string | null
   }
 
   beforeEach(() => {
-  // reset API mocks
-  ;(api.getTickets as any).mockReset()
-  ;(api.getTicketById as any).mockReset()
-  ;(api.updateTicketStatus as any).mockReset()
+    // reset API mocks
+    vi.mocked(api.getTickets).mockReset()
+    vi.mocked(api.getTicketById).mockReset()
+    vi.mocked(api.updateTicketStatus).mockReset()
 
     // reset store state
     useTicketsStore.setState({
       tickets: [...initialState.tickets],
       currentTicket: initialState.currentTicket,
       loading: initialState.loading,
-      error: initialState.error,
+      error: initialState.error
     })
 
     // suppress console.error output from the store during tests (we assert state instead)
@@ -41,8 +42,18 @@ describe('useTicketsStore', () => {
   })
 
   it('fetches tickets successfully with getTickets', async () => {
-  const fakeTickets = [{ id: '1', subject: 'A', customerName: 'Alice', description: 'd', priority: 'low', status: 'new', createdAt: '2020-01-01' }]
-  ;(api.getTickets as any).mockResolvedValue(fakeTickets)
+    const fakeTickets: Ticket[] = [
+      {
+        id: '1',
+        subject: 'A',
+        customerName: 'Alice',
+        description: 'd',
+        priority: 'low',
+        status: 'new',
+        createdAt: '2020-01-01'
+      } as Ticket
+    ]
+    vi.mocked(api.getTickets).mockResolvedValue(fakeTickets)
 
     await useTicketsStore.getState().getTickets()
 
@@ -53,7 +64,7 @@ describe('useTicketsStore', () => {
   })
 
   it('sets error when getTickets fails', async () => {
-  ;(api.getTickets as any).mockRejectedValue(new Error('fail'))
+    vi.mocked(api.getTickets).mockRejectedValue(new Error('fail'))
 
     await useTicketsStore.getState().getTickets()
 
@@ -64,8 +75,16 @@ describe('useTicketsStore', () => {
   })
 
   it('fetches a ticket by id with getTicketById (success)', async () => {
-  const ticket = { id: '1', subject: 'A', customerName: 'Alice', description: 'd', priority: 'low', status: 'new', createdAt: '2020-01-01' }
-  ;(api.getTicketById as any).mockResolvedValue(ticket)
+    const ticket: Ticket = {
+      id: '1',
+      subject: 'A',
+      customerName: 'Alice',
+      description: 'd',
+      priority: 'low',
+      status: 'new',
+      createdAt: '2020-01-01'
+    }
+    vi.mocked(api.getTicketById).mockResolvedValue(ticket)
 
     await useTicketsStore.getState().getTicketById('1')
 
@@ -76,7 +95,7 @@ describe('useTicketsStore', () => {
   })
 
   it('handles missing ticket from apiGetTicketById', async () => {
-  ;(api.getTicketById as any).mockResolvedValue(undefined)
+    vi.mocked(api.getTicketById).mockResolvedValue(undefined)
 
     await useTicketsStore.getState().getTicketById('notfound')
 
@@ -87,7 +106,7 @@ describe('useTicketsStore', () => {
   })
 
   it('sets error when getTicketById fails', async () => {
-  ;(api.getTicketById as any).mockRejectedValue(new Error('boom'))
+    vi.mocked(api.getTicketById).mockRejectedValue(new Error('boom'))
 
     await useTicketsStore.getState().getTicketById('1')
 
@@ -100,31 +119,63 @@ describe('useTicketsStore', () => {
     // seed store with tickets and currentTicket
     useTicketsStore.setState({
       tickets: [
-        { id: '1', subject: 'A', customerName: 'Alice', description: 'd', status: 'new', priority: 'low', createdAt: '2020-01-01' },
-      ],
-      currentTicket: { id: '1', subject: 'A', customerName: 'Alice', description: 'd', status: 'new', priority: 'low', createdAt: '2020-01-01' },
+        {
+          id: '1',
+          subject: 'A',
+          customerName: 'Alice',
+          description: 'd',
+          status: 'new',
+          priority: 'low',
+          createdAt: '2020-01-01'
+        } as Ticket
+      ] as Ticket[],
+      currentTicket: {
+        id: '1',
+        subject: 'A',
+        customerName: 'Alice',
+        description: 'd',
+        status: 'new',
+        priority: 'low',
+        createdAt: '2020-01-01'
+      } as Ticket
     })
+    vi.mocked(api.updateTicketStatus).mockResolvedValue(undefined)
 
-  ;(api.updateTicketStatus as any).mockResolvedValue(undefined)
-
-    await useTicketsStore.getState().updateTicketStatus('1', 'in_progress' as any)
+    await useTicketsStore.getState().updateTicketStatus('1', 'in_progress' as Ticket['status'])
 
     const state = useTicketsStore.getState()
     expect(state.loading).toBe(false)
     expect(state.error).toBeNull()
-    expect(state.tickets.find((t) => t.id === '1')?.status).toBe('in_progress')
+    expect(state.tickets.find(t => t.id === '1')?.status).toBe('in_progress')
     expect(state.currentTicket?.status).toBe('in_progress')
   })
 
   it('sets error when updateTicketStatus fails', async () => {
     useTicketsStore.setState({
-      tickets: [{ id: '1', subject: 'A', customerName: 'Alice', description: 'd', status: 'new', priority: 'low', createdAt: '2020-01-01' }],
-      currentTicket: { id: '1', subject: 'A', customerName: 'Alice', description: 'd', status: 'new', priority: 'low', createdAt: '2020-01-01' },
+      tickets: [
+        {
+          id: '1',
+          subject: 'A',
+          customerName: 'Alice',
+          description: 'd',
+          status: 'new',
+          priority: 'low',
+          createdAt: '2020-01-01'
+        } as Ticket
+      ] as Ticket[],
+      currentTicket: {
+        id: '1',
+        subject: 'A',
+        customerName: 'Alice',
+        description: 'd',
+        status: 'new',
+        priority: 'low',
+        createdAt: '2020-01-01'
+      } as Ticket
     })
+    vi.mocked(api.updateTicketStatus).mockRejectedValue(new Error('update-fail'))
 
-  ;(api.updateTicketStatus as any).mockRejectedValue(new Error('update-fail'))
-
-    await useTicketsStore.getState().updateTicketStatus('1', 'closed' as any)
+    await useTicketsStore.getState().updateTicketStatus('1', 'closed' as Ticket['status'])
 
     const state = useTicketsStore.getState()
     expect(state.loading).toBe(false)

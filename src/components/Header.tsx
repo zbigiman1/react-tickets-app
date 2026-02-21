@@ -10,16 +10,10 @@ export default function Header() {
       <div className="header-content">
         <h1>{t('title')}</h1>
         <div className="locale-switcher">
-          <button
-            onClick={() => setLocale('en')}
-            className={locale === 'en' ? 'active' : ''}
-          >
+          <button onClick={() => setLocale('en')} className={locale === 'en' ? 'active' : ''}>
             EN
           </button>
-          <button
-            onClick={() => setLocale('pl')}
-            className={locale === 'pl' ? 'active' : ''}
-          >
+          <button onClick={() => setLocale('pl')} className={locale === 'pl' ? 'active' : ''}>
             PL
           </button>
         </div>

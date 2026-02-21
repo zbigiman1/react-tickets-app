@@ -1,5 +1,6 @@
 import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import type React from 'react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 // Mocks must be registered before importing the component under test
@@ -7,20 +8,19 @@ const updateTicketMock = vi.fn().mockResolvedValue(undefined)
 const getTicketMock = vi.fn().mockResolvedValue(undefined)
 
 vi.mock('@/stores/useTicketsStore', () => ({
-  useTicketsStore: vi.fn(),
+  useTicketsStore: vi.fn()
 }))
 
 vi.mock('@/components/Loader', () => ({
-  default: () => <div data-testid="loader">LOADING</div>,
+  default: () => <div data-testid="loader">LOADING</div>
 }))
 
 vi.mock('react-i18next', () => ({
-  useTranslation: () => ({ t: (k: string) => k }),
+  useTranslation: () => ({ t: (k: string) => k })
 }))
-
 vi.mock('react-router-dom', () => ({
   useParams: () => ({ id: '1' }),
-  Link: ({ children, to }: any) => <a href={to}>{children}</a>,
+  Link: ({ children, to }: { children: React.ReactNode; to: string }) => <a href={to}>{children}</a>
 }))
 
 vi.mock('@/utils', () => ({ formatDate: (d: string) => `formatted:${d}` }))
@@ -35,12 +35,13 @@ describe('TicketDetails', () => {
   })
 
   it('shows loader when loading', async () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ;(useTicketsStore as any).mockImplementation(() => ({
       currentTicket: undefined,
       getTicketById: getTicketMock,
       updateTicketStatus: updateTicketMock,
       loading: true,
-      error: null,
+      error: null
     }))
 
     render(<TicketDetails />)
@@ -49,7 +50,8 @@ describe('TicketDetails', () => {
   })
 
   it('shows error message when error exists', async () => {
-    (useTicketsStore as any).mockImplementation(() => ({
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    ;(useTicketsStore as any).mockImplementation(() => ({
       currentTicket: {
         id: '1',
         customerName: '',
@@ -57,12 +59,12 @@ describe('TicketDetails', () => {
         description: '',
         priority: 'low',
         status: 'new',
-        createdAt: '',
+        createdAt: ''
       },
       getTicketById: getTicketMock,
       updateTicketStatus: updateTicketMock,
       loading: false,
-      error: 'oops',
+      error: 'oops'
     }))
 
     render(<TicketDetails />)
@@ -77,22 +79,25 @@ describe('TicketDetails', () => {
       description: 'Desc',
       priority: 'low',
       status: 'new',
-      createdAt: '2020-01-01',
+      createdAt: '2020-01-01'
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ;(useTicketsStore as any).mockImplementation(() => ({
       currentTicket: ticket,
       getTicketById: getTicketMock,
       updateTicketStatus: updateTicketMock,
       loading: false,
-      error: null,
+      error: null
     }))
 
     render(<TicketDetails />)
 
     await waitFor(() => expect(screen.getByText(/Help/)).toBeInTheDocument())
 
-    const select = screen.getByRole('combobox', { name: /updateTicketStatus/i }) as HTMLSelectElement
+    const select = screen.getByRole('combobox', {
+      name: /updateTicketStatus/i
+    }) as HTMLSelectElement
     await userEvent.selectOptions(select, 'in_progress')
 
     const updateBtn = screen.getByText('update')
