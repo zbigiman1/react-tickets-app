@@ -11,7 +11,6 @@ interface TicketsState {
     getTicketById: (id: string) => Promise<void>
     updateTicketStatus: (id: string, status: Status) => Promise<void>
     filterTicketsByStatus: (status: Status) => Ticket[]
-
 }
 
 export const useTicketsStore = create<TicketsState>((set, get) => ({
