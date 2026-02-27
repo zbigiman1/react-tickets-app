@@ -1,10 +1,9 @@
-# react-tickets-app
-
-## Example app with:
+# Example app with:
 
 - React 19
 - Zustand store
 - i18n localization
+- vitest unit tests
 
 ## Run dev
 
