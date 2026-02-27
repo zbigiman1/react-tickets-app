@@ -1,6 +1,10 @@
 # react-tickets-app
 
-React 19 with zustand store example app.
+## Example app with:
+
+- React 19
+- Zustand store
+- i18n localization
 
 ## Run dev
 
