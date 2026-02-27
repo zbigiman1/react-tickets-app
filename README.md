@@ -1,5 +1,7 @@
 # react-tickets-app
 
+React 19 with zustand store example app.
+
 ## Run dev
 
 ```
